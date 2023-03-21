@@ -1,0 +1,2 @@
+MetricsPort 127.0.0.1:9036
+MetricsPortPolicy accept 127.0.0.1
