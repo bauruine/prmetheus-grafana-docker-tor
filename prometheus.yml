@@ -70,7 +70,7 @@ scrape_configs:
     basic_auth:
       username: promnode
       password: passwort
-  - job_name: hostname_des_zweiten_relays-tor-tor1
+  - job_name: hostname_des_zweiten_relays-tor-tor2
     metrics_path: /metrics
     static_configs:
       - targets: ['relay2_public_ipv6:9036']
