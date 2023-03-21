@@ -1,0 +1,84 @@
+---
+global:
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+
+  - job_name: hostname_des_ersten_relays
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay1_public_ipv6:9100']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_ersten_relays
+    basic_auth:
+      username: promnode
+      password: passwort
+  - job_name: hostname_des_zweiten_relays
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay2_public_ipv6:9100']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_zweiten_relays
+    basic_auth:
+      username: promnode
+      password: passwort
+
+  - job_name: hostname_des_ersten_relays-tor-tor1
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay1_public_ipv6:9035']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_ersten_relays-tor1
+    basic_auth:
+      username: promnode
+      password: passwort
+  - job_name: hostname_des_ersten_relays-tor-tor2
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay1_public_ipv6:9036']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_ersten_relays-tor2
+    basic_auth:
+      username: promnode
+      password: passwort
+  - job_name: hostname_des_zweiten_relays-tor-tor1
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay2_public_ipv6:9035']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_ersten_relays-tor1
+    basic_auth:
+      username: promnode
+      password: passwort
+  - job_name: hostname_des_zweiten_relays-tor-tor1
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['relay2_public_ipv6:9036']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)
+        target_label: instance
+        replacement: hostname_des_zweiten_relays-tor2
+    basic_auth:
+      username: promnode
+      password: passwort
